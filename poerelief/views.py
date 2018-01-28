@@ -16,7 +16,7 @@ version = "0.0.1"
 @app.route('/index')
 def page():
 	pg = ""
-	return render_template("index.html", pg=pg, sitename=sitenamed, sitenameh=sitenameh, pagetitle=pagetitle, version=version, docid='random', servername=app.config['SERVER_NAME'])
+	return render_template("index.html", pg=pg, sitename=sitenamed, sitenameh=sitenameh, pagetitle=pagetitle, version=version, docid='random')
 
 @app.route('/about')
 def about():
@@ -50,12 +50,12 @@ def epidoc_json(locid):
 def randomdoc():
 	data = None
 	try:
-		rand = random.randrange(0, db.session.query(models.Epidat).count()) 
+		rand = random.randrange(0, db.session.query(models.Epidat).count())
 		doc = db.session.query(models.Epidat)[rand]
 		data = {'availability': doc.availability, 'licence': doc.licence, 'title': doc.title, 'locid': doc.locid, 'urld': doc.urld, 'date': doc.date, 'insc': doc.insc, 'material': doc.material, 'condition': doc.condition, 'deconote': doc.deconote, 'decodesc': doc.decodesc, 'geoname': doc.geoname, 'geotype': doc.geotype, 'geocountry': doc.geocountry, 'georegion': doc.georegion, 'geocoord': doc.geocoord, 'graphics': doc.graphics, 'graphicsurl': doc.graphicsurl, 'idno': doc.idno, 'sex': doc.sex, 'pname': doc.pname, 'deathdate': doc.deathdate, 'edition': doc.edition, 'verso': doc.verso, 'recto': doc.recto, 'translation': doc.translation, 'linecomm':  doc.linecomm, 'endcomm': doc.endcomm, 'proso': doc.proso, 'bibliography': doc.bibliography}
 	except sqlalchemy.exc.OperationalError as oe:
 		logger.error("Failed to connect to DB:%s", oe[0])
-		
+
 	return json.dumps(data)
 
 #this generates a specific json
@@ -81,4 +81,3 @@ def permalink(locid):
 	else:
 		docid = "no valid id-loc specified"
 	return render_template("index.html", docid=docid, sitename=sitenamed, sitenameh=sitenameh, pagetitle=pagetitle, version=version)
-

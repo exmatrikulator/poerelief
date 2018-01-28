@@ -21,10 +21,10 @@ To Install/Run
 - `cd` into cloned directory
 - virtualenv poe (to create a new evironment)
 - source poe/bin/activate to activate the new environment
-- `pip install -r requirements.txt` to install the necessary python packages
+- `pip install -r requirements-py2.txt` to install the necessary python packages
 - Download the databased (cleaned up) as used in production, and put it into the subdirectory poerelief
 - The code is a bit unorganized, but running `python run.py` in the subdirectory poerelief should start the main app
-- To enable proper links even for development, the dev app has to be accessed on localhost instead of 127.0.0.1 (this is set in config.py, but afaik it is not possible to set it to an IP)
+
 
 *Poerelief 0.1.4*
 - cleaned up database (to remove square brackets and records that were missing crucial fields)
